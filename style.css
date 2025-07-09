@@ -52,7 +52,7 @@ html {
   height: 55px;
   background-color: aliceblue;
   border-radius: 100%;
-  font-size: 13px;
+  font-size: 15px;
 }
 #CostOutput{
   margin: 0 auto;
@@ -288,6 +288,7 @@ html {
   .Stages > div{
       width: 45px;
       height: 45px;
+      font-size: 12px;
   }
   #ThePoints{
     gap: 10px;
