@@ -331,11 +331,17 @@ function levelChange(Point, dir, obj) {
 }
 window.addEventListener("resize", () => reDrawLine(0));
 
-function Answer() {
+function Answer(end) {
     let start=document.querySelector(".start").innerHTML
-    let out = findSmaller(start);
+    let out = findSmaller(start,end);
     out[0].push(start);
-    document.getElementById("CostOutput").innerHTML='Travel Cost: '+out[1];    let path=out[0].reverse();
+    let path=out[0].reverse();
+    if(path.indexOf(end)==-1){
+      alert("No Path to Selected Destination")
+      reDrawLine(0)
+      return;
+    }
+    document.getElementById("CostOutput").innerHTML='Travel Cost: '+out[1];    
     reDrawLine(1)
     if(path.length>=2){
       for(let i=0;i<path.length-1;i++){
@@ -344,16 +350,22 @@ function Answer() {
     }
 
 }
-function findSmaller(value) {
-  let Ways = getPaths(value);
-  if (Ways.length == 0) {
+
+
+function findSmaller(value,end) {
+  if(end==value){
     return [[], 0];
+  }
+  let Ways = getPaths(value);  
+  if (Ways.length == 0) {
+    tempvalu=totalCost();
+    return [[], tempvalu];
   }
   let path = 0,
     min = null,
     temppath = [];
   for (let i = 0; i < Ways.length; i++) {
-    let mains = findSmaller(Ways[i]);
+    let mains = findSmaller(Ways[i],end);
     mains[1]+=PathCost[value + "-" + Ways[i]]
     if (min == null) {
       path = i;
@@ -372,6 +384,65 @@ function findSmaller(value) {
 }
 function getPaths(value){
   return pointDiv[value];
+}
+
+
+function totalCost(){
+  total=0;
+  for (let key in PathCost) {
+    total+=PathCost[key];
+  }
+  return total;
+}
+
+
+function GetEnd(){
+  if(points.length<=1){
+    alert("No Paths");
+    return;
+  }
+  let dist=[];
+  for(let i=0;i<points.length;i++){
+      const pointobj = document.getElementById("P-" + points[i]);
+      if (pointobj.classList.contains("start")) {
+        if( pointDiv[points[i]].length==0){
+          alert("Start doesn't have a path!");
+          return;
+        }
+      }else{
+        dist.push(points[i]);
+      }
+  }
+  if(dist.length==0){
+    alert("No points found!")
+    return 
+  }
+  if(dist.length==1){
+    Answer(dist[0])
+  }else{
+    selectDist(dist)
+  }
+
+}
+function selectDist(dist){
+  let opt=``;
+  dist.forEach((element)=>{
+    opt+=`<option value="${element}">Point: ${element}</option>`
+  })
+  document.getElementById("selectDestination").innerHTML=opt;
+  document.getElementById("selectFinalmain").classList.add("active")
+
+}
+
+function cancelfind(){
+  document.getElementById("selectDestination").innerHTML=``;
+  document.getElementById("selectFinalmain").classList.remove("active")
+}
+function Startfind(){
+  let value=document.getElementById("selectDestination").value;
+  document.getElementById("selectDestination").innerHTML=``;
+  document.getElementById("selectFinalmain").classList.remove("active")
+  Answer(value)
 }
 
 function removeSelected(no){

@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="selectFinalmain" class="selectFinalmain">
+        <div>
+            <h1>Choose Destination</h1>
+            <p>Please choose a Destination</p>
+            <select id="selectDestination">
+            </select>
+            <div>
+                <button onclick="cancelfind()">Cancel</button>
+                <button onclick="Startfind()">Start</button>
+            </div>
+            
+        </div>
+        
+    </div>
     <div class="Main">
         <div class="paths">
             <div id="ThePoints"></div>
@@ -15,7 +29,7 @@
         <div class="controls">
             <div class="controlHeader">
                 <button onclick="AddPoint()">Add New Point</button>
-                <button onclick="Answer()">Find low-cost path</button>
+                <button onclick="GetEnd()">Find low-cost path</button>
             </div>
             <div>
                 <select name="" id="PointSelect" onchange="ChangeTable(this)">
