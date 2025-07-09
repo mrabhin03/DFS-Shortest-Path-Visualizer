@@ -77,10 +77,11 @@ html {
 }
 
 .controlHeader button {
-  padding: 5px 25px;
+  padding: 5px 20px;
   border-radius: 5px;
   border: none;
   background-color: rgb(162, 219, 250);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 #Pointsdetails {
@@ -108,6 +109,7 @@ html {
   padding: 10px;
   box-sizing: border-box;
   gap: 20px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.471);
 }
 
 .detailsHead {
@@ -126,8 +128,9 @@ html {
   border: none;
   outline: none;
   border-radius: 5px;
-  background-color: antiquewhite;
+  background-color: rgb(247, 220, 184);
   cursor: pointer;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .PointerTable {
@@ -294,5 +297,8 @@ html {
   }
   .PointerTable button {
     padding: 5px 10px;
+  }
+  .controlHeader button{
+    font-size: 12px;
   }
 }
