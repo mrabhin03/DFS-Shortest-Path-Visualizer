@@ -32,7 +32,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   z-index: 10;
 }
 .Stages {
@@ -48,8 +48,8 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   background-color: aliceblue;
   border-radius: 100%;
   font-size: 13px;
@@ -77,9 +77,9 @@ html {
 }
 
 .controlHeader button {
-  padding: 5px 20px;
+  padding: 9px 20px;
   border-radius: 5px;
-  border: none;
+  border: 2px solid white;
   background-color: rgb(162, 219, 250);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -282,6 +282,17 @@ html {
 .selectFinalmain> div > div button:last-child{
   background-color: rgb(85, 132, 251);
   color: white;
+}
+
+@media (max-width:600px) {
+  .Stages > div{
+      width: 45px;
+      height: 45px;
+  }
+  #ThePoints{
+    gap: 10px;
+  }
+  
 }
 
 @media (max-width:400px) {
