@@ -177,22 +177,25 @@ function RemovePoint(Point) {
   for (let key in pointDiv) {
     const index = pointDiv[key].indexOf(Point);
     if (index != -1) {
-      let line = document.getElementById(key + "-" + Point);
+      console.log(key + "-" + Point)
+      let line = document.getElementById("Line-"+key + "-" + Point);
       PathCost[key + "-" + Point] = -1;
       line.remove();
       let Tabletr = document.getElementById("tr-" + key + "-" + Point);
-      if (Tabletr.parentElement.childElementCount == 1) {
-        let thetr = document.createElement("tr");
-        thetr.id = "None";
-        thetr.innerHTML = "<td colspan='3'>No Path</td>";
-        Tabletr.parentElement.append(thetr);
+      if(Tabletr){
+        if (Tabletr.parentElement.childElementCount == 1) {
+          let thetr = document.createElement("tr");
+          thetr.id = "None";
+          thetr.innerHTML = "<td colspan='3'>No Path</td>";
+          Tabletr.parentElement.append(thetr);
+        }
+        Tabletr.remove();
       }
-      Tabletr.remove();
       pointDiv[key] = pointDiv[key].filter((element) => element !== Point);
     }
   }
   pointDiv[Point].forEach((element) => {
-    let line = document.getElementById(Point + "-" + element);
+    let line = document.getElementById("Line-"+Point + "-" + element);
     PathCost[Point + "-" + element] = -1;
     line.remove();
   });
@@ -218,6 +221,9 @@ function RemovePoint(Point) {
   points = points.filter((element) => element !== Point);
   reDrawLine(0);
   SelectorChange()
+  if(points.length>0){
+    addPathTable(points[0])
+  }
 }
 
 
